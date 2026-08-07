@@ -80,10 +80,20 @@ export default function Hero() {
     >
 
 
-      {/* Ambient Radial Glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full bg-indigo-500/10 dark:bg-violet-600/15 blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-[400px] h-[400px] rounded-full bg-indigo-500/5 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
+      {/* Ambient glowing blobs */}
+      <div className="absolute inset-0 z-[2] pointer-events-none overflow-hidden">
+        <motion.div
+          className="absolute top-[-10%] left-[10%] w-[560px] h-[560px] rounded-full blob opacity-30 blur-[100px]"
+          style={{ background: "radial-gradient(circle, var(--c-primary), var(--c-accent2), transparent 70%)", x: gx, y: gy }}
+        />
+        <motion.div
+          className="absolute bottom-[-5%] right-[5%] w-[440px] h-[440px] rounded-full blob opacity-25 blur-[110px]"
+          style={{ background: "radial-gradient(circle, var(--c-accent), var(--c-glow), transparent 70%)", animationDelay: "4s" }}
+        />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full bg-indigo-500/10 dark:bg-violet-600/15 blur-[140px] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
+      </div>
+
 
 
       {/* Floating code snippets */}

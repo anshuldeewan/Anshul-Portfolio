@@ -10,19 +10,14 @@ export default function ParticleField() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const getDimensions = () => {
-      const parent = canvas.parentElement;
-      const w = parent?.clientWidth || window.innerWidth;
-      const h = parent?.clientHeight || window.innerHeight;
-      return { w: Math.max(w, 300), h: Math.max(h, 300) };
-    };
-
-    const { w, h } = getDimensions();
+    const w = window.innerWidth;
+    const h = window.innerHeight;
 
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.setSize(w, h, false);
     renderer.setClearColor(0x000000, 0);
+
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(70, w / h, 0.1, 100);
@@ -93,11 +88,13 @@ export default function ParticleField() {
 
     const onResize = () => {
       if (!canvas) return;
-      const { w: rw, h: rh } = getDimensions();
+      const rw = window.innerWidth;
+      const rh = window.innerHeight;
       camera.aspect = rw / rh;
       camera.updateProjectionMatrix();
       renderer.setSize(rw, rh, false);
     };
+
     window.addEventListener("resize", onResize, { passive: true });
 
     return () => {
