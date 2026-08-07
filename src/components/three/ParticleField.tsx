@@ -237,49 +237,89 @@ export default function ParticleField() {
       animId = requestAnimationFrame(animate);
       const t = clock.getElapsedTime();
 
-      // Smooth mouse lerp
-      targetX += (mouseX - targetX) * 0.035;
-      targetY += (mouseY - targetY) * 0.035;
+      // Responsive mouse lerp
+      targetX += (mouseX - targetX) * 0.08;
+      targetY += (mouseY - targetY) * 0.08;
 
-      // Gravity Well Orbital Motion (Curving particles towards center behind headline)
+      const mouseWorldX = targetX * 14;
+      const mouseWorldY = -targetY * 14;
+
+      // Gravity Well Orbital Motion + Cursor Repulsion Physics (Layer A)
       const arrA = (geoA.attributes.position as THREE.BufferAttribute).array as Float32Array;
       for (let i = 0; i < countA; i++) {
         const i3 = i * 3;
         const currentAngle = anglesA[i] + t * (0.08 / (radiiA[i] * 0.3 + 0.6)) * speedA[i];
         const pulsedRadius = radiiA[i] + Math.sin(t * 0.8 + i) * 0.3;
-        arrA[i3]     = Math.cos(currentAngle) * pulsedRadius;
-        arrA[i3 + 1] = centerY + Math.sin(currentAngle) * (pulsedRadius * 0.6);
+        let px = Math.cos(currentAngle) * pulsedRadius;
+        let py = centerY + Math.sin(currentAngle) * (pulsedRadius * 0.6);
+
+        // Dynamic repulsion from cursor
+        const dx = px - mouseWorldX;
+        const dy = py - mouseWorldY;
+        const distSq = dx * dx + dy * dy;
+        if (distSq < 25) {
+          const force = (25 - distSq) * 0.035;
+          px += (dx / (Math.sqrt(distSq) + 0.1)) * force;
+          py += (dy / (Math.sqrt(distSq) + 0.1)) * force;
+        }
+
+        arrA[i3]     = px;
+        arrA[i3 + 1] = py;
       }
       (geoA.attributes.position as THREE.BufferAttribute).needsUpdate = true;
-      pointsA.rotation.y = targetX * 0.12;
-      pointsA.rotation.x = -targetY * 0.12;
+      pointsA.rotation.y = targetX * 0.18;
+      pointsA.rotation.x = -targetY * 0.18;
 
-      // Layer B: Midground gentle counter-rotation
+      // Layer B: Midground gentle counter-rotation & mouse repulsion
       const arrB = (geoB.attributes.position as THREE.BufferAttribute).array as Float32Array;
       for (let i = 0; i < countB; i++) {
         const i3 = i * 3;
         const currentAngle = anglesB[i] - t * 0.03;
-        arrB[i3]     = Math.cos(currentAngle) * radiiB[i];
-        arrB[i3 + 1] = centerY + Math.sin(currentAngle) * (radiiB[i] * 0.55);
+        let px = Math.cos(currentAngle) * radiiB[i];
+        let py = centerY + Math.sin(currentAngle) * (radiiB[i] * 0.55);
+
+        const dx = px - mouseWorldX;
+        const dy = py - mouseWorldY;
+        const distSq = dx * dx + dy * dy;
+        if (distSq < 20) {
+          const force = (20 - distSq) * 0.025;
+          px += (dx / (Math.sqrt(distSq) + 0.1)) * force;
+          py += (dy / (Math.sqrt(distSq) + 0.1)) * force;
+        }
+
+        arrB[i3]     = px;
+        arrB[i3 + 1] = py;
       }
       (geoB.attributes.position as THREE.BufferAttribute).needsUpdate = true;
-      pointsB.rotation.y = -targetX * 0.09;
-      pointsB.rotation.x = -targetY * 0.09;
+      pointsB.rotation.y = -targetX * 0.14;
+      pointsB.rotation.x = -targetY * 0.14;
 
       // Layer C: Background subtle rotation
-      pointsC.rotation.y = t * 0.006 + targetX * 0.05;
-      pointsC.rotation.x = Math.sin(t * 0.006) * 0.04 - targetY * 0.05;
+      pointsC.rotation.y = t * 0.006 + targetX * 0.08;
+      pointsC.rotation.x = Math.sin(t * 0.006) * 0.04 - targetY * 0.08;
 
-      // Layer D: About Section upward drifting embers
+      // Layer D: About Section upward drifting embers & mouse interaction
       const arrD = (geoD.attributes.position as THREE.BufferAttribute).array as Float32Array;
       for (let i = 0; i < countD; i++) {
         const i3 = i * 3;
-        arrD[i3 + 1] = initYD[i] + Math.sin(t * 0.5 + i * 0.4) * 0.3 + ((t * 0.18 + i * 0.05) % 18) - 9;
-        arrD[i3]     = initXD[i] + Math.cos(t * 0.3 + i * 0.6) * 0.2;
+        let py = initYD[i] + Math.sin(t * 0.5 + i * 0.4) * 0.3 + ((t * 0.18 + i * 0.05) % 18) - 9;
+        let px = initXD[i] + Math.cos(t * 0.3 + i * 0.6) * 0.2;
+
+        const dx = px - mouseWorldX;
+        const dy = py - (mouseWorldY - aboutCenterY * 0.8);
+        const distSq = dx * dx + dy * dy;
+        if (distSq < 20) {
+          const force = (20 - distSq) * 0.03;
+          px += (dx / (Math.sqrt(distSq) + 0.1)) * force;
+          py += (dy / (Math.sqrt(distSq) + 0.1)) * force;
+        }
+
+        arrD[i3]     = px;
+        arrD[i3 + 1] = py;
       }
       (geoD.attributes.position as THREE.BufferAttribute).needsUpdate = true;
-      pointsD.rotation.y = t * 0.01 + targetX * 0.08;
-      pointsD.rotation.x = Math.sin(t * 0.008) * 0.04 - targetY * 0.08;
+      pointsD.rotation.y = t * 0.01 + targetX * 0.12;
+      pointsD.rotation.x = Math.sin(t * 0.008) * 0.04 - targetY * 0.12;
 
       // Subtle twinkling
       matA.opacity = 0.82 + Math.sin(t * 1.6) * 0.12;

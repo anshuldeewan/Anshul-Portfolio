@@ -101,13 +101,15 @@ export default function About() {
                 className="glass-card rounded-2xl p-6 sm:p-7 card-shadow border border-theme hover:border-indigo-400/50 space-y-5"
               >
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-indigo-500 via-violet-600 to-sky-500 flex items-center justify-center text-xl font-extrabold text-white shadow-lg">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-indigo-500 via-violet-600 to-sky-500 flex items-center justify-center text-xl font-extrabold text-white shadow-lg flex-shrink-0">
                     AD
                   </div>
                   <div>
-                    <div className="flex items-center gap-2">
-                      <h3 className="text-base font-bold text-theme font-mono">Anshul Deewan</h3>
-                      <CheckCircle2 size={15} className="text-indigo-400" />
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h3 className="text-lg font-extrabold text-theme font-sans tracking-tight">
+                        <span className="gradient-text">Anshul</span> Deewan
+                      </h3>
+                      <CheckCircle2 size={16} className="text-indigo-400 flex-shrink-0" />
                     </div>
                     <p className="text-indigo-400 text-xs font-mono font-semibold mt-0.5">AI Systems Architect & Full Stack Developer</p>
                     <div className="flex items-center gap-1.5 mt-1.5 text-theme3 text-xs font-mono">
