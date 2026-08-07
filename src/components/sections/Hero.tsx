@@ -57,8 +57,8 @@ export default function Hero() {
         {/* Radial Edge Vignette — Darkens viewport edges for high center-to-edge contrast */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_25%,rgba(6,6,10,0.85)_75%,rgba(4,4,8,0.98)_100%)] pointer-events-none" />
 
-        {/* Section Divider Hairline */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/25 to-transparent" />
+        {/* Seamless Hero -> About Ambient Transition Bridge */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-indigo-500/[0.03] to-transparent pointer-events-none" />
       </div>
 
       {/* Main Hero Grid Layout (60% AI Research Lab + 30% Product Launch + 10% Universe) */}

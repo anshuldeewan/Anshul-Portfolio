@@ -161,7 +161,7 @@ export default function ParticleField() {
     for (let i = 0; i < countC; i++) {
       const i3 = i * 3;
       posC[i3]     = (Math.random() - 0.5) * 36;
-      posC[i3 + 1] = (Math.random() - 0.5) * 36;
+      posC[i3 + 1] = (Math.random() - 0.5) * 44; // Extended vertical span
       posC[i3 + 2] = (Math.random() - 0.5) * 20;
 
       const c = palette[Math.floor(Math.random() * palette.length)];
@@ -174,13 +174,49 @@ export default function ParticleField() {
       size: 0.05,
       vertexColors: true,
       transparent: true,
-      opacity: 0.5,
+      opacity: 0.55,
       sizeAttenuation: true,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
     });
     const pointsC = new THREE.Points(geoC, matC);
     scene.add(pointsC);
+
+    // ── LAYER D: About Section Soft Floating Embers (280 particles) ──
+    const countD = 280;
+    const posD = new Float32Array(countD * 3);
+    const colD = new Float32Array(countD * 3);
+    const initYD = new Float32Array(countD);
+    const initXD = new Float32Array(countD);
+
+    const aboutCenterY = -8.0; // Positioned behind About section
+
+    for (let i = 0; i < countD; i++) {
+      const i3 = i * 3;
+      const xVal = (Math.random() - 0.5) * 28;
+      const yVal = aboutCenterY + (Math.random() - 0.5) * 16;
+      posD[i3]     = xVal; initXD[i] = xVal;
+      posD[i3 + 1] = yVal; initYD[i] = yVal;
+      posD[i3 + 2] = (Math.random() - 0.5) * 12;
+
+      const c = palette[Math.floor(Math.random() * palette.length)];
+      colD[i3] = c.r; colD[i3 + 1] = c.g; colD[i3 + 2] = c.b;
+    }
+    const geoD = new THREE.BufferGeometry();
+    geoD.setAttribute("position", new THREE.BufferAttribute(posD, 3));
+    geoD.setAttribute("color", new THREE.BufferAttribute(colD, 3));
+    const matD = new THREE.PointsMaterial({
+      size: 0.13,
+      map: sqTex || undefined,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.72,
+      sizeAttenuation: true,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    });
+    const pointsD = new THREE.Points(geoD, matD);
+    scene.add(pointsD);
 
     // Mouse Tracking with subtle inertia lerp
     let mouseX = 0;
@@ -232,11 +268,23 @@ export default function ParticleField() {
 
       // Layer C: Background subtle rotation
       pointsC.rotation.y = t * 0.006 + targetX * 0.05;
-      pointsC.rotation.x = Math.sin(t * 0.006) * 0.03 - targetY * 0.05;
+      pointsC.rotation.x = Math.sin(t * 0.006) * 0.04 - targetY * 0.05;
+
+      // Layer D: About Section upward drifting embers
+      const arrD = (geoD.attributes.position as THREE.BufferAttribute).array as Float32Array;
+      for (let i = 0; i < countD; i++) {
+        const i3 = i * 3;
+        arrD[i3 + 1] = initYD[i] + Math.sin(t * 0.5 + i * 0.4) * 0.3 + ((t * 0.18 + i * 0.05) % 18) - 9;
+        arrD[i3]     = initXD[i] + Math.cos(t * 0.3 + i * 0.6) * 0.2;
+      }
+      (geoD.attributes.position as THREE.BufferAttribute).needsUpdate = true;
+      pointsD.rotation.y = t * 0.01 + targetX * 0.08;
+      pointsD.rotation.x = Math.sin(t * 0.008) * 0.04 - targetY * 0.08;
 
       // Subtle twinkling
       matA.opacity = 0.82 + Math.sin(t * 1.6) * 0.12;
       matB.opacity = 0.68 + Math.cos(t * 1.2) * 0.1;
+      matD.opacity = 0.70 + Math.sin(t * 1.4 + 1) * 0.1;
 
       renderer.render(scene, camera);
     };
@@ -260,6 +308,7 @@ export default function ParticleField() {
       geoA.dispose(); matA.dispose();
       geoB.dispose(); matB.dispose();
       geoC.dispose(); matC.dispose();
+      geoD.dispose(); matD.dispose();
       sqTex?.dispose();
       dmTex?.dispose();
     };

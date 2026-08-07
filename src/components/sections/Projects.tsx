@@ -124,55 +124,55 @@ export default function Projects() {
                   </div>
                 </div>
 
-                {/* Right Column: Simulated Architecture Window Mockup (6 cols) */}
+                {/* Right Column: High-Contrast Simulated IDE Architecture Window Mockup (6 cols) */}
                 <div className="lg:col-span-6 font-mono">
-                  <div className="rounded-xl overflow-hidden border border-theme surface-bg shadow-xl group-hover:shadow-2xl transition-all duration-300">
+                  <div className="rounded-xl overflow-hidden border border-slate-700/60 dark:border-slate-800 bg-slate-950 text-slate-100 shadow-2xl transition-all duration-300">
                     
-                    {/* Simulated Browser Bar */}
-                    <div className="flex items-center justify-between px-4 py-2.5 surface-bg2 border-b border-theme/60 text-xs">
+                    {/* Simulated IDE Titlebar */}
+                    <div className="flex items-center justify-between px-4 py-2.5 bg-slate-900 border-b border-slate-800 text-xs">
                       <div className="flex items-center gap-1.5">
-                        <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
-                        <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                        <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-rose-500" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-amber-500" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
                       </div>
-                      <div className="px-2.5 py-0.5 rounded surface border border-theme text-[10px] text-theme3 font-medium truncate max-w-[220px]">
+                      <div className="px-2.5 py-0.5 rounded bg-slate-950 border border-slate-800 text-[10px] text-slate-300 font-medium truncate max-w-[220px]">
                         https://{project.id}.anshuldeewan.dev
                       </div>
-                      <div className="flex items-center gap-1 text-theme3">
+                      <div className="flex items-center gap-1 text-slate-400">
                         <Activity size={12} className="text-emerald-400 animate-pulse" />
                       </div>
                     </div>
 
-                    {/* Window Content Mockup */}
-                    <div className="p-5 space-y-3">
+                    {/* Code Editor Window Content */}
+                    <div className="p-5 space-y-3 bg-slate-950">
                       {project.id === "rideplus" ? (
                         <div className="space-y-3 text-xs">
-                          <div className="flex items-center justify-between p-3 rounded-lg surface border border-theme">
+                          <div className="flex items-center justify-between p-3 rounded-lg bg-slate-900 border border-slate-800">
                             <div className="flex items-center gap-2">
                               <Sparkles size={15} className="text-indigo-400" />
-                              <span className="font-bold text-theme">AI Water Purifier Agent</span>
+                              <span className="font-bold text-slate-100">AI Water Purifier Agent</span>
                             </div>
-                            <span className="text-[10px] text-emerald-400 font-bold px-2 py-0.5 rounded bg-emerald-500/10">ONLINE</span>
+                            <span className="text-[10px] text-emerald-400 font-bold px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-500/30">ONLINE</span>
                           </div>
-                          <div className="p-3 rounded-lg bg-black/40 border border-theme/40 text-[11px] text-slate-300 space-y-1">
-                            <div className="text-indigo-400 font-bold">› supabase.auth.getUser()</div>
-                            <div className="text-sky-400">✓ Auth Session Verified</div>
-                            <div className="text-emerald-400">✓ Calculated Distance: 42.5 km // Fare: ₹450</div>
+                          <div className="p-3.5 rounded-lg bg-slate-900/90 border border-slate-800 text-[11px] text-slate-200 space-y-1.5">
+                            <div className="text-indigo-300 font-bold">› supabase.auth.getUser()</div>
+                            <div className="text-sky-300 font-semibold">✓ Auth Session Verified</div>
+                            <div className="text-emerald-400 font-semibold">✓ Calculated Distance: 42.5 km // Fare: ₹450</div>
                           </div>
                         </div>
                       ) : (
                         <div className="space-y-3 text-xs">
-                          <div className="flex items-center justify-between p-3 rounded-lg surface border border-theme">
+                          <div className="flex items-center justify-between p-3 rounded-lg bg-slate-900 border border-slate-800">
                             <div className="flex items-center gap-2">
                               <ShieldCheck size={15} className="text-violet-400" />
-                              <span className="font-bold text-theme">UPI Risk Scoring Engine</span>
+                              <span className="font-bold text-slate-100">UPI Risk Scoring Engine</span>
                             </div>
-                            <span className="text-[10px] font-bold text-violet-400 px-2 py-0.5 rounded bg-violet-500/10">92% ACCURACY</span>
+                            <span className="text-[10px] font-bold text-violet-300 px-2 py-0.5 rounded bg-violet-500/20 border border-violet-500/30">92% ACCURACY</span>
                           </div>
-                          <div className="p-3 rounded-lg bg-black/40 border border-theme/40 text-[11px] text-slate-300 space-y-1">
-                            <div className="text-violet-400 font-bold">› model.predict_proba(transaction)</div>
-                            <div className="text-emerald-400">✓ Low Risk Score: 0.08 // Transaction Approved</div>
-                            <div className="text-slate-400">// Gradient Boosting Classifier (Scikit-learn)</div>
+                          <div className="p-3.5 rounded-lg bg-slate-900/90 border border-slate-800 text-[11px] text-slate-200 space-y-1.5">
+                            <div className="text-violet-300 font-bold">› model.predict_proba(transaction)</div>
+                            <div className="text-emerald-400 font-semibold">✓ Low Risk Score: 0.08 // Transaction Approved</div>
+                            <div className="text-slate-400 font-medium">// Gradient Boosting Classifier (Scikit-learn)</div>
                           </div>
                         </div>
                       )}

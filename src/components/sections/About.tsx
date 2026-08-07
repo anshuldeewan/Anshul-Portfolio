@@ -60,6 +60,8 @@ export default function About() {
 
   return (
     <section id="about" className="relative py-24 lg:py-36 overflow-hidden section-tinted transition-colors duration-300">
+      {/* Seamless Top Ambient Lighting Continuation */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[85vw] max-w-[1000px] h-[350px] rounded-full bg-violet-600/10 dark:bg-indigo-500/12 blur-[150px] pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/25 to-transparent" />
       
       <div ref={ref} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
