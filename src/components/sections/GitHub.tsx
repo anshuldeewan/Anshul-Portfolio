@@ -7,7 +7,7 @@ import { FaGithub } from "react-icons/fa";
 import { SITE_CONFIG } from "@/lib/constants";
 
 const REPOS = [
-  { name: "rideplus", desc: "Production inter-city cab booking platform with React, Supabase & Vercel", stars: 4, forks: 1, lang: "TypeScript", langColor: "#3178c6", topics: ["react", "supabase", "nextjs", "ai"] },
+  { name: "RideplusRO", desc: "Production inter-city cab booking platform with React, Supabase & Vercel", stars: 4, forks: 1, lang: "TypeScript", langColor: "#3178c6", topics: ["react", "supabase", "nextjs", "ai"] },
   { name: "upi-risk-predictor", desc: "ML-powered UPI transaction fraud detection with 92% accuracy", stars: 6, forks: 2, lang: "Python", langColor: "#3572A5", topics: ["machine-learning", "flask", "scikit-learn"] },
   { name: "llm-agents-toolkit", desc: "AI agent patterns and LLM application templates using Claude API", stars: 8, forks: 3, lang: "Python", langColor: "#3572A5", topics: ["llm", "ai-agents", "claude", "mcp"] },
   { name: "quant-analytics", desc: "Python dashboard for commodity spread trading with Z-Score & rolling statistics", stars: 3, forks: 1, lang: "Python", langColor: "#3572A5", topics: ["quant", "pandas", "trading"] },

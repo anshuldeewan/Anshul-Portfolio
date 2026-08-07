@@ -84,8 +84,8 @@ export const PROJECTS = [
     longDescription:
       "Built a full-stack booking platform from zero to production deployment on Vercel. Features include 15+ reusable React UI components, Supabase authentication & Row Level Security, role-based Admin Panel with CRUD operations and multi-image uploads (up to 4), SEO optimization via dynamic product slugs, and a 45% reduction in dev time via GenAI workflows.",
     tech: ["React.js", "JavaScript", "Tailwind CSS", "Supabase", "Vercel", "Generative AI", "PostgreSQL"],
-    github: "https://github.com/anshuldeewan/rideplus",
-    live: "https://rideplus.vercel.app",
+    github: "https://github.com/anshuldeewan/RideplusRO.git",
+    live: "https://rideplusro.com/",
     color: "#8b5cf6",
     accent: "#a78bfa",
     category: "Full Stack",
