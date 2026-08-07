@@ -10,16 +10,25 @@ export default function ParticleField() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    const getDimensions = () => {
+      const parent = canvas.parentElement;
+      const w = parent?.clientWidth || window.innerWidth;
+      const h = parent?.clientHeight || window.innerHeight;
+      return { w: Math.max(w, 300), h: Math.max(h, 300) };
+    };
+
+    const { w, h } = getDimensions();
+
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-    renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
+    renderer.setSize(w, h, false);
     renderer.setClearColor(0x000000, 0);
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(70, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
+    const camera = new THREE.PerspectiveCamera(70, w / h, 0.1, 100);
     camera.position.z = 9;
 
-    const count = 1000;
+    const count = 1200;
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
     
@@ -34,9 +43,9 @@ export default function ParticleField() {
 
     for (let i = 0; i < count; i++) {
       const i3 = i * 3;
-      positions[i3]     = (Math.random() - 0.5) * 24;
-      positions[i3 + 1] = (Math.random() - 0.5) * 24;
-      positions[i3 + 2] = (Math.random() - 0.5) * 12;
+      positions[i3]     = (Math.random() - 0.5) * 28;
+      positions[i3 + 1] = (Math.random() - 0.5) * 28;
+      positions[i3 + 2] = (Math.random() - 0.5) * 14;
       const c = palette[Math.floor(Math.random() * palette.length)];
       colors[i3] = c.r; colors[i3 + 1] = c.g; colors[i3 + 2] = c.b;
     }
@@ -45,10 +54,10 @@ export default function ParticleField() {
     geo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
     geo.setAttribute("color",    new THREE.BufferAttribute(colors, 3));
     const mat = new THREE.PointsMaterial({
-      size: 0.075,
+      size: 0.08,
       vertexColors: true,
       transparent: true,
-      opacity: 0.65,
+      opacity: 0.8,
       sizeAttenuation: true,
       blending: THREE.AdditiveBlending
     });
@@ -64,7 +73,7 @@ export default function ParticleField() {
       mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
       mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
     };
-    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
 
     let animId: number;
     const clock = new THREE.Clock();
@@ -75,7 +84,7 @@ export default function ParticleField() {
       targetX += (mouseX - targetX) * 0.05;
       targetY += (mouseY - targetY) * 0.05;
 
-      points.rotation.y = t * 0.02 + targetX * 0.15;
+      points.rotation.y = t * 0.025 + targetX * 0.15;
       points.rotation.x = Math.sin(t * 0.015) * 0.08 - targetY * 0.15;
 
       renderer.render(scene, camera);
@@ -84,11 +93,12 @@ export default function ParticleField() {
 
     const onResize = () => {
       if (!canvas) return;
-      camera.aspect = canvas.clientWidth / canvas.clientHeight;
+      const { w: rw, h: rh } = getDimensions();
+      camera.aspect = rw / rh;
       camera.updateProjectionMatrix();
-      renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
+      renderer.setSize(rw, rh, false);
     };
-    window.addEventListener("resize", onResize);
+    window.addEventListener("resize", onResize, { passive: true });
 
     return () => {
       cancelAnimationFrame(animId);
@@ -98,6 +108,7 @@ export default function ParticleField() {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" style={{ background: "transparent" }} />;
+  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none z-0" style={{ background: "transparent" }} />;
 }
+
 
