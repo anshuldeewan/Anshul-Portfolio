@@ -80,19 +80,27 @@ export default function Hero() {
     >
 
 
-      {/* Ambient glowing blobs */}
-      <div className="absolute inset-0 z-[2] pointer-events-none overflow-hidden">
+      {/* Cinematic AI Singularity Backdrop & Center-to-Edge Vignette */}
+      <div className="absolute inset-0 z-[2] pointer-events-none overflow-hidden select-none">
+        {/* Mouse Parallax Core Singularity Blob */}
         <motion.div
-          className="absolute top-[-10%] left-[10%] w-[560px] h-[560px] rounded-full blob opacity-30 blur-[100px]"
-          style={{ background: "radial-gradient(circle, var(--c-primary), var(--c-accent2), transparent 70%)", x: gx, y: gy }}
+          className="absolute top-[28%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[550px] rounded-full opacity-35 blur-[120px]"
+          style={{
+            background: "radial-gradient(circle at center, rgba(139, 92, 246, 0.45) 0%, rgba(99, 91, 255, 0.28) 40%, rgba(14, 165, 233, 0.12) 65%, transparent 80%)",
+            x: gx, y: gy,
+          }}
         />
-        <motion.div
-          className="absolute bottom-[-5%] right-[5%] w-[440px] h-[440px] rounded-full blob opacity-25 blur-[110px]"
-          style={{ background: "radial-gradient(circle, var(--c-accent), var(--c-glow), transparent 70%)", animationDelay: "4s" }}
-        />
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full bg-indigo-500/10 dark:bg-violet-600/15 blur-[140px] pointer-events-none" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
+
+        {/* Ambient Pulsing Deep Violet Backlight */}
+        <div className="absolute top-[35%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[1100px] h-[600px] rounded-full bg-violet-600/15 dark:bg-indigo-500/20 blur-[150px] pointer-events-none" />
+
+        {/* Radial Edge Vignette — Darkens viewport edges to create high center-to-edge contrast */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_25%,rgba(6,6,10,0.85)_75%,rgba(4,4,8,0.98)_100%)] pointer-events-none" />
+
+        {/* Section Divider Hairline */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/25 to-transparent" />
       </div>
+
 
 
 
