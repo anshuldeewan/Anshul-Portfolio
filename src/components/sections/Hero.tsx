@@ -7,7 +7,6 @@ import { ROLES, SITE_CONFIG } from "@/lib/constants";
 import { FileText, Zap, Sparkles, Terminal, Award } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import SpotlightCard from "@/components/ui/SpotlightCard";
-import confetti from "canvas-confetti";
 
 const SNIPPETS = [
   { code: "const ai = new LLMAgent()", x: "6%",  y: "22%", delay: 0 },
@@ -41,45 +40,12 @@ export default function Hero() {
   const scroll = (id: string) =>
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
-  const triggerFirecrackers = (e: React.MouseEvent) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (rect.left + rect.width / 2) / window.innerWidth;
-    const y = (rect.top + rect.height / 2) / window.innerHeight;
-
-    confetti({
-      particleCount: 90,
-      spread: 80,
-      origin: { x, y },
-      colors: ["#8b5cf6", "#635bff", "#38bdf8", "#f43f5e", "#fbbf24", "#34d399"],
-      disableForReducedMotion: true,
-    });
-
-    setTimeout(() => {
-      confetti({
-        particleCount: 45,
-        angle: 60,
-        spread: 60,
-        origin: { x: Math.max(0.1, x - 0.08), y },
-        colors: ["#a78bfa", "#38bdf8", "#fbbf24"],
-      });
-      confetti({
-        particleCount: 45,
-        angle: 120,
-        spread: 60,
-        origin: { x: Math.min(0.9, x + 0.08), y },
-        colors: ["#8b5cf6", "#f43f5e", "#34d399"],
-      });
-    }, 140);
-  };
-
   return (
     <section
       ref={containerRef}
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden section-tinted transition-colors duration-300"
     >
-
-
       {/* Cinematic AI Singularity Backdrop & Center-to-Edge Vignette */}
       <div className="absolute inset-0 z-[2] pointer-events-none overflow-hidden select-none">
         {/* Mouse Parallax Core Singularity Blob */}
@@ -100,9 +66,6 @@ export default function Hero() {
         {/* Section Divider Hairline */}
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/25 to-transparent" />
       </div>
-
-
-
 
       {/* Floating code snippets */}
       <div className="absolute inset-0 z-[3] pointer-events-none hidden lg:block">
@@ -151,20 +114,20 @@ export default function Hero() {
           Hi, I&#39;m
         </motion.p>
 
-        {/* Main Name Heading with Firecracker Hover Effect */}
+        {/* Main Name Heading */}
         <motion.h1
           initial={{ opacity: 0, y: 36 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.42, ease: [0.23, 1, 0.32, 1] }}
-          className="text-6xl sm:text-8xl lg:text-[100px] xl:text-[112px] font-extrabold tracking-tight leading-none mb-4 cursor-pointer select-none group inline-block"
-          onMouseEnter={triggerFirecrackers}
-          title="Hover to launch firecrackers! 🎆"
+          className="text-6xl sm:text-8xl lg:text-[100px] xl:text-[112px] font-extrabold tracking-tight leading-none mb-4"
         >
-          <span className="gradient-text transition-transform duration-300 group-hover:scale-105 inline-block">Anshul</span>
+          <span className="gradient-text">Anshul</span>
           <br />
-          <span className="text-theme transition-transform duration-300 group-hover:scale-105 inline-block">Deewan</span>
+          <span className="text-theme">Deewan</span>
         </motion.h1>
 
+
         {/* Dynamic Typing Role */}
+
 
         <motion.div
           initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
