@@ -6,14 +6,8 @@ import { TypeAnimation } from "react-type-animation";
 import { ROLES, SITE_CONFIG } from "@/lib/constants";
 import { FileText, Zap, Sparkles, Terminal, Award } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import dynamic from "next/dynamic";
 import SpotlightCard from "@/components/ui/SpotlightCard";
 import confetti from "canvas-confetti";
-
-const ParticleField = dynamic(() => import("@/components/three/ParticleField"), {
-  ssr: false,
-  loading: () => null,
-});
 
 const SNIPPETS = [
   { code: "const ai = new LLMAgent()", x: "6%",  y: "22%", delay: 0 },
@@ -84,10 +78,7 @@ export default function Hero() {
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden section-tinted transition-colors duration-300"
     >
-      {/* Three.js Animated Particle Canvas Background */}
-      <div className="absolute inset-0 z-0 opacity-75 pointer-events-none">
-        <ParticleField />
-      </div>
+
 
       {/* Ambient Radial Glows */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full bg-indigo-500/10 dark:bg-violet-600/15 blur-[140px] pointer-events-none" />

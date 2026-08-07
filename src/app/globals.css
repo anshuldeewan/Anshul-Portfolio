@@ -165,21 +165,14 @@
   transform: translateY(-3px);
 }
 
-/* Sections */
-.section-light {
-  background-color: var(--c-bg);
-  transition: var(--transition);
-}
-
+/* Sections — Transparent so Global Three.js Particle Background spans the entire site */
+.section-light,
+.section-sky,
 .section-tinted {
-  background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg2) 50%, var(--c-bg) 100%);
+  background: transparent;
   transition: var(--transition);
 }
 
-.section-sky {
-  background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg2) 50%, var(--c-bg) 100%);
-  transition: var(--transition);
-}
 
 
 
