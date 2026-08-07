@@ -2,18 +2,44 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { GraduationCap, Brain, Code2, TrendingUp, Award, MapPin, CheckCircle2, Sparkles } from "lucide-react";
+import { GraduationCap, Brain, Code2, TrendingUp, Award, MapPin, CheckCircle2, Sparkles, Terminal } from "lucide-react";
 import { CERTIFICATIONS } from "@/lib/constants";
 import SpotlightCard from "@/components/ui/SpotlightCard";
 
-const STORY = [
-  { icon: <GraduationCap size={16} />, title: "VIT University", sub: "B.Tech CSE · CGPA 7.87", desc: "Pursuing Computer Science with focus on AI/ML, algorithms, and production software.", color: "#635bff", year: "2022 – Present" },
-  { icon: <Code2 size={16} />, title: "Full Stack Dev", sub: "React · Next.js · Supabase", desc: "Built production apps from zero to deployment. RidePlus serves real users with 99.9% uptime.", color: "#0ea5e9", year: "2023" },
-  { icon: <Brain size={16} />, title: "AI / ML Engineer", sub: "LLMs · Agents · Scikit-learn", desc: "12+ Anthropic certifications. Built ML systems with 92% accuracy. Deep expertise in prompt engineering.", color: "#7c3aed", year: "2024" },
-  { icon: <TrendingUp size={16} />, title: "Quant Analytics", sub: "Futures · Spread · Python", desc: "Analysed commodity futures at Axxela. Built Python dashboards with Z-Score, regression & rolling stats.", color: "#10b981", year: "2025–26" },
+const MILESTONES = [
+  {
+    code: "[01_VIT_CSE]",
+    title: "Vellore Institute of Technology",
+    sub: "B.Tech CSE (2022–Present) · CGPA 7.87",
+    desc: "Specializing in Computer Science, Machine Learning algorithms, and scalable web infrastructure.",
+    color: "#635bff",
+    icon: <GraduationCap size={16} />,
+  },
+  {
+    code: "[02_FULL_STACK]",
+    title: "Full Stack Engineering",
+    sub: "Next.js · React 19 · Supabase · REST APIs",
+    desc: "Engineered production platforms from zero to deployment. Built RidePlus serving active users with 99.9% uptime.",
+    color: "#0284c7",
+    icon: <Code2 size={16} />,
+  },
+  {
+    code: "[03_AI_RESEARCH]",
+    title: "AI Systems & LLM Architecture",
+    sub: "Anthropic Certifications · Model Evaluation · Agentic RAG",
+    desc: "12+ Anthropic AI certifications. Built machine learning models achieving 92% fraud prediction accuracy.",
+    color: "#7c3aed",
+    icon: <Brain size={16} />,
+  },
+  {
+    code: "[04_QUANT_TRADING]",
+    title: "Quantitative Market Analytics",
+    sub: "Futures Markets · Volatility Spread · Python Analytics",
+    desc: "Traded 5 commodity futures markets at Axxela. Built Python analytics dashboards with Z-Score rolling metrics.",
+    color: "#059669",
+    icon: <TrendingUp size={16} />,
+  },
 ];
-
-const TRAITS = ["AI Systems Architect","LLM Builder","Full Stack Engineer","Quant Analyst","ML Practitioner","Prompt Engineer","Problem Solver","Open Source"];
 
 export default function About() {
   const ref = useRef(null);
@@ -34,20 +60,33 @@ export default function About() {
 
   return (
     <section id="about" className="relative py-24 lg:py-36 overflow-hidden section-tinted transition-colors duration-300">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
-      <div className="absolute top-1/2 right-0 w-[500px] h-[500px] rounded-full bg-indigo-500/5 blur-[120px] pointer-events-none" />
-
-      <div ref={ref} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <motion.div initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }} className="text-center mb-16">
-          <div className="section-label mx-auto mb-4 w-fit">01 / Story</div>
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-theme mb-4">Engineering <span className="gradient-text">Background</span></h2>
-          <p className="max-w-xl mx-auto text-theme2 text-base sm:text-lg">Computer Science undergraduate at VIT specializing in AI engineering, full-stack systems, and quantitative analytics.</p>
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/25 to-transparent" />
+      
+      <div ref={ref} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        
+        {/* Editorial Research Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.55 }}
+          className="space-y-3 text-left"
+        >
+          <div className="font-mono text-xs text-indigo-400 tracking-wider font-semibold">
+            // SECTION 01: CORE ENGINEERING THESIS & TRACK RECORD
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-theme tracking-tight">
+            Bridging <span className="gradient-text">Statistical Rigor</span> with Production Products
+          </h2>
+          <p className="max-w-2xl text-theme2 text-sm sm:text-base leading-relaxed">
+            I specialize in designing autonomous AI agents, fine-tuned LLM workflows, quantitative trading analytics, and resilient web infrastructure.
+          </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-12 gap-10 items-start mb-16">
-          {/* Profile Card with 3D Tilt & Spotlight */}
-          <div className="lg:col-span-5">
+        {/* 2-Column Grid */}
+        <div className="grid lg:grid-cols-12 gap-10 items-start">
+          
+          {/* Left Column: Interactive 3D Profile & Anthropic Certifications (5 cols) */}
+          <div className="lg:col-span-5 space-y-6">
             <motion.div
               ref={cardRef}
               onMouseMove={onMouseMove}
@@ -57,56 +96,57 @@ export default function About() {
             >
               <SpotlightCard
                 spotlightColor="var(--c-glow-strong)"
-                className="glass-card rounded-3xl p-7 card-shadow border-theme hover:border-indigo-400/50"
+                className="glass-card rounded-2xl p-6 sm:p-7 card-shadow border border-theme hover:border-indigo-400/50 space-y-5"
               >
-                <div className="flex items-start gap-5 mb-5">
-                  <div className="relative flex-shrink-0">
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 via-violet-600 to-sky-500 flex items-center justify-center text-2xl font-extrabold text-white shadow-lg shadow-indigo-500/25">
-                      AD
-                    </div>
-                    <motion.div className="absolute -inset-0.5 rounded-2xl border-2 border-indigo-400/40"
-                      animate={{ opacity: [0.4, 1, 0.4] }} transition={{ duration: 2.5, repeat: Infinity }} />
+                <div className="flex items-center gap-4">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-indigo-500 via-violet-600 to-sky-500 flex items-center justify-center text-xl font-extrabold text-white shadow-lg">
+                    AD
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <h3 className="text-lg font-bold text-theme">Anshul Deewan</h3>
-                      <CheckCircle2 size={16} className="text-indigo-500 fill-indigo-500/10" />
+                      <h3 className="text-base font-bold text-theme font-mono">Anshul Deewan</h3>
+                      <CheckCircle2 size={15} className="text-indigo-400" />
                     </div>
-                    <p className="text-indigo-600 dark:text-indigo-400 text-xs font-semibold mt-0.5">AI Engineer & Full Stack Developer</p>
-                    <div className="flex items-center gap-2 mt-2 text-theme3 text-xs font-medium">
-                      <MapPin size={12} className="text-rose-500" /><span>Jaipur, Rajasthan, India</span>
+                    <p className="text-indigo-400 text-xs font-mono font-semibold mt-0.5">AI Systems Architect & Full Stack Developer</p>
+                    <div className="flex items-center gap-1.5 mt-1.5 text-theme3 text-xs font-mono">
+                      <MapPin size={12} className="text-rose-500" />
+                      <span>Jaipur, Rajasthan, India</span>
                     </div>
                   </div>
                 </div>
 
-                <p className="text-theme2 text-xs sm:text-sm leading-relaxed mb-5">
-                  Computer Science undergraduate at VIT. Experienced in building AI agent systems, trading quantitative dashboards at <strong className="text-theme">Axxela</strong>, and delivering full-stack web applications at <strong className="text-theme">Aletheions</strong>.
+                <p className="text-theme2 text-xs sm:text-sm leading-relaxed">
+                  Computer Science undergraduate at VIT. Experienced in deploying agentic RAG workflows, quantitative futures trading analytics at <strong className="text-theme">Axxela Research</strong>, and scalable web apps at <strong className="text-theme">Aletheions</strong>.
                 </p>
 
-                <div className="flex flex-wrap gap-1.5 mb-5">
-                  {["Python","React.js","Generative AI","Quant Analytics","AI Agents","Flask"].map((t) => <span key={t} className="chip text-[10px]">{t}</span>)}
-                </div>
-
-                <div className="pt-4 border-t border-theme flex items-center justify-between">
-                  <span className="text-xs font-bold text-theme3 uppercase tracking-wider">Education</span>
-                  <span className="text-xs font-extrabold text-indigo-500 bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20">VIT CSE · CGPA 7.87</span>
+                <div className="pt-4 border-t border-theme/60 flex items-center justify-between font-mono text-xs">
+                  <span className="text-theme3 font-bold uppercase">DEGREE</span>
+                  <span className="text-indigo-400 font-bold px-2.5 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/20">
+                    VIT CSE · CGPA 7.87
+                  </span>
                 </div>
               </SpotlightCard>
             </motion.div>
 
-            {/* Certifications Card */}
-            <SpotlightCard spotlightColor="rgba(124, 58, 237, 0.25)" className="glass-card rounded-2xl p-6 card-shadow mt-6">
-              <div className="flex items-center gap-2.5 mb-4">
-                <div className="w-8 h-8 rounded-xl surface border border-theme flex items-center justify-center">
-                  <Award size={16} className="text-indigo-500 dark:text-violet-400" />
+            {/* Anthropic Certifications Grid */}
+            <SpotlightCard spotlightColor="rgba(124, 58, 237, 0.25)" className="glass-card rounded-2xl p-6 card-shadow border border-theme space-y-4">
+              <div className="flex items-center justify-between font-mono text-xs">
+                <div className="flex items-center gap-2 text-theme font-bold">
+                  <Award size={16} className="text-indigo-400" />
+                  <span>ANTHROPIC CERTIFICATIONS</span>
                 </div>
-                <span className="font-bold text-theme text-sm">Anthropic Certifications</span>
-                <span className="ml-auto px-2.5 py-0.5 rounded-full chip font-bold text-xs">12+ Completed</span>
+                <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-bold text-[10px]">
+                  12+ COMPLETED
+                </span>
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {CERTIFICATIONS.map((c) => (
-                  <motion.span key={c} whileHover={{ scale: 1.05 }} className="px-2.5 py-1 rounded-xl surface border border-theme text-theme2 text-[11px] font-semibold flex items-center gap-1.5 transition-all">
-                    <Sparkles size={11} className="text-indigo-500 flex-shrink-0" />
+                  <motion.span
+                    key={c}
+                    whileHover={{ scale: 1.04 }}
+                    className="px-2.5 py-1 rounded-lg surface border border-theme text-theme2 text-[11px] font-mono font-medium flex items-center gap-1.5"
+                  >
+                    <Sparkles size={11} className="text-indigo-400" />
                     <span>{c}</span>
                   </motion.span>
                 ))}
@@ -114,42 +154,37 @@ export default function About() {
             </SpotlightCard>
           </div>
 
-          {/* Right Column - Timeline */}
-          <div className="lg:col-span-7">
-            <div className="relative">
-              <div className="absolute left-5 top-0 bottom-0 w-px bg-gradient-to-b from-indigo-500/50 via-violet-500/30 to-transparent" />
-              <div className="space-y-6">
-                {STORY.map((item, i) => (
-                  <motion.div key={item.title} initial={{ opacity: 0, x: 20 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ delay: 0.2 + i * 0.1 }} className="relative pl-14 group">
-                    <div className="absolute left-0 w-10 h-10 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 shadow-sm z-10"
-                      style={{ background: `${item.color}15`, border: `1.5px solid ${item.color}35`, color: item.color }}>
+          {/* Right Column: Track Record Milestones Grid (7 cols) */}
+          <div className="lg:col-span-7 space-y-4">
+            {MILESTONES.map((item, i) => (
+              <motion.div
+                key={item.code}
+                initial={{ opacity: 0, x: 20 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
+              >
+                <SpotlightCard
+                  spotlightColor={`${item.color}25`}
+                  className="glass-card rounded-2xl p-5 border border-theme hover:border-indigo-400/50 transition-all duration-300 card-shadow space-y-2"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-xs font-bold" style={{ color: item.color }}>
+                      {item.code}
+                    </span>
+                    <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: `${item.color}15`, color: item.color }}>
                       {item.icon}
                     </div>
-                    <SpotlightCard spotlightColor={`${item.color}25`} className="glass-card rounded-2xl p-5 group-hover:border-indigo-400/50 transition-all duration-300 card-shadow">
-                      <div className="flex items-start justify-between mb-1">
-                        <h4 className="font-bold text-theme text-sm">{item.title}</h4>
-                        <span className="text-[10px] text-theme3 font-semibold flex-shrink-0 ml-2">{item.year}</span>
-                      </div>
-                      <p className="text-xs font-semibold mb-2" style={{ color: item.color }}>{item.sub}</p>
-                      <p className="text-xs text-theme2 leading-relaxed">{item.desc}</p>
-                    </SpotlightCard>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+                  </div>
+                  <h4 className="font-bold text-theme text-base">{item.title}</h4>
+                  <p className="text-xs font-mono font-semibold" style={{ color: item.color }}>{item.sub}</p>
+                  <p className="text-xs text-theme2 leading-relaxed">{item.desc}</p>
+                </SpotlightCard>
+              </motion.div>
+            ))}
           </div>
+
         </div>
 
-        {/* Trait Marquee */}
-        <div className="overflow-hidden py-3 surface rounded-2xl border border-theme card-shadow">
-          <motion.div className="flex gap-4 whitespace-nowrap" animate={{ x: ["0%", "-50%"] }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }}>
-            {[...TRAITS, ...TRAITS, ...TRAITS].map((t, i) => (
-              <span key={i} className="px-4 py-1.5 rounded-full surface border border-theme text-theme2 text-xs font-semibold flex-shrink-0 whitespace-nowrap shadow-sm hover:border-indigo-400 transition-colors">
-                ⚡ {t}
-              </span>
-            ))}
-          </motion.div>
-        </div>
       </div>
     </section>
   );
