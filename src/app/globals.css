@@ -1,0 +1,322 @@
+@import "tailwindcss";
+
+/* ══════════════════════════════════════
+   DESIGN SYSTEM & THEME TOKENS
+   ══════════════════════════════════════ */
+:root {
+  --c-bg:            #f8f7fd;
+  --c-bg2:           #f0eefe;
+  --c-surface:       #ffffff;
+  --c-surface-hover: #f3f0ff;
+  --c-card:          rgba(255, 255, 255, 0.94);
+  --c-border:        rgba(99, 91, 255, 0.14);
+  --c-border-hover:  rgba(99, 91, 255, 0.35);
+  --c-border2:       rgba(0, 0, 0, 0.06);
+  --c-text:          #0b0a12;
+  --c-text2:         #474266;
+  --c-text3:         #837fa6;
+  --c-muted:         #6b7280;
+  --c-primary:       #635bff;
+  --c-primary-hover: #5247e6;
+  --c-accent:        #7c3aed;
+  --c-accent2:       #0ea5e9;
+  --c-glow:          rgba(99, 91, 255, 0.14);
+  --c-glow-strong:   rgba(99, 91, 255, 0.3);
+  --radius:          1rem;
+  --transition:      background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dark {
+  --c-bg:            #08080d;
+  --c-bg2:           #0d0c15;
+  --c-surface:       #12111c;
+  --c-surface-hover: #1a1828;
+  --c-card:          rgba(18, 17, 28, 0.94);
+  --c-border:        rgba(139, 92, 246, 0.18);
+  --c-border-hover:  rgba(139, 92, 246, 0.45);
+  --c-border2:       rgba(255, 255, 255, 0.08);
+  --c-text:          #f5f3ff;
+  --c-text2:         #ad9fcf;
+  --c-text3:         #726b9e;
+  --c-muted:         #8e87b8;
+  --c-primary:       #8b5cf6;
+  --c-primary-hover: #a78bfa;
+  --c-accent:        #a855f7;
+  --c-accent2:       #38bdf8;
+  --c-glow:          rgba(139, 92, 246, 0.18);
+  --c-glow-strong:   rgba(139, 92, 246, 0.38);
+}
+
+/* ══════════════════════════════════════
+   BASE & TYPOGRAPHY
+   ══════════════════════════════════════ */
+@layer base {
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    scroll-behavior: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg2) 50%, var(--c-bg) 100%) fixed;
+    color: var(--c-text);
+    font-family: var(--font-inter), var(--font-geist), system-ui, sans-serif;
+    overflow-x: hidden;
+    transition: var(--transition);
+  }
+
+
+  ::selection {
+    background: rgba(139, 92, 246, 0.28);
+    color: var(--c-text);
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--c-bg); }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--c-primary), var(--c-accent2));
+    border-radius: 99px;
+  }
+}
+
+/* ══════════════════════════════════════
+   ADVANCED VISUAL UTILITIES
+   ══════════════════════════════════════ */
+
+/* Surfaces */
+.surface       { background-color: var(--c-surface); transition: var(--transition); }
+.surface-bg    { background-color: var(--c-bg);      transition: var(--transition); }
+.surface-bg2   { background-color: var(--c-bg2);     transition: var(--transition); }
+.surface-card  { background-color: var(--c-card);    transition: var(--transition); }
+
+/* Borders */
+.border-theme  { border-color: var(--c-border);  transition: border-color 0.3s ease; }
+.border-theme2 { border-color: var(--c-border2); transition: border-color 0.3s ease; }
+.border-theme-hover:hover { border-color: var(--c-border-hover); }
+
+/* Text */
+.text-theme  { color: var(--c-text);  transition: color 0.3s ease; }
+.text-theme2 { color: var(--c-text2); transition: color 0.3s ease; }
+.text-theme3 { color: var(--c-text3); transition: color 0.3s ease; }
+
+/* Dynamic Glassmorphism with Subtle Border Highlight */
+.glass {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--c-border);
+  transition: var(--transition);
+}
+.dark .glass {
+  background: rgba(18, 17, 28, 0.75);
+  border-color: var(--c-border);
+}
+
+.glass-card {
+  background: var(--c-card);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid var(--c-border);
+  box-shadow: 0 4px 28px rgba(99, 91, 255, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+  transition: var(--transition);
+}
+.dark .glass-card {
+  background: rgba(18, 17, 28, 0.88);
+  border-color: var(--c-border);
+  box-shadow: 0 8px 36px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Mouse Spotlight Card Container */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--c-primary), transparent 40%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+/* Elevated Shadow Effects */
+.card-shadow {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03), 0 14px 40px var(--c-glow);
+}
+.dark .card-shadow {
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.6), 0 14px 40px rgba(0, 0, 0, 0.4);
+}
+.card-shadow-hover:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07), 0 24px 60px var(--c-glow-strong);
+  transform: translateY(-3px);
+}
+
+/* Sections */
+.section-light {
+  background-color: var(--c-bg);
+  transition: var(--transition);
+}
+
+.section-tinted {
+  background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg2) 50%, var(--c-bg) 100%);
+  transition: var(--transition);
+}
+
+.section-sky {
+  background: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg2) 50%, var(--c-bg) 100%);
+  transition: var(--transition);
+}
+
+
+
+/* Animated Grid & Patterns */
+.animated-grid {
+  background-image:
+    linear-gradient(var(--c-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--c-border) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.dot-pattern {
+  background-image: radial-gradient(circle, var(--c-border) 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+}
+
+/* Dynamic Animated Gradient Text Sweep */
+@keyframes gradient-sweep {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.gradient-text {
+  background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-accent) 40%, var(--c-accent2) 75%, var(--c-primary) 100%);
+  background-size: 200% 200%;
+  animation: gradient-sweep 8s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Chip Badge */
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 12px; border-radius: 99px;
+  font-size: 11px; font-weight: 600;
+  background: var(--c-glow);
+  color: var(--c-primary);
+  border: 1px solid var(--c-border);
+  transition: var(--transition);
+}
+.chip:hover {
+  border-color: var(--c-border-hover);
+  box-shadow: 0 2px 12px var(--c-glow-strong);
+}
+
+/* Section Label Badge */
+.section-label {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 18px; border-radius: 99px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  background: var(--c-glow);
+  color: var(--c-primary);
+  border: 1px solid var(--c-border);
+  box-shadow: 0 2px 12px var(--c-glow);
+  transition: var(--transition);
+}
+
+/* Primary Button with Specular Glow */
+.btn-primary {
+  background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-accent) 100%);
+  color: #ffffff; font-weight: 600;
+  box-shadow: 0 4px 24px var(--c-glow-strong);
+  transition: box-shadow 0.25s ease, transform 0.15s ease, filter 0.25s ease;
+}
+.btn-primary:hover {
+  box-shadow: 0 8px 36px var(--c-glow-strong);
+  filter: brightness(1.08);
+}
+
+/* Shimmer Animation */
+@keyframes shimmer {
+  0%   { background-position: -800px 0; }
+  100% { background-position:  800px 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  background-size: 800px 100%;
+  animation: shimmer 2.4s infinite linear;
+}
+
+/* Leading Glow Bullet for Progress Bars */
+.progress-bullet {
+  position: absolute; right: 0; top: 50%;
+  transform: translateY(-50%);
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 8px 2px var(--c-primary);
+}
+
+/* Blob Morpher */
+@keyframes blob {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50%       { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+}
+.blob { animation: blob 10s ease-in-out infinite; }
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+.float-animation { animation: float 5s ease-in-out infinite; }
+
+/* Terminal Cursor */
+.terminal-cursor {
+  display: inline-block; width: 7px; height: 1em;
+  background: var(--c-primary); margin-left: 2px;
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* Scrollbar Hide */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Subdued Noise Overlay */
+.noise::after {
+  content: "";
+  position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
+  background-size: 180px;
+  opacity: 0.015;
+  mix-blend-mode: overlay;
+}
+
+/* Theme Input Controls */
+.input-theme {
+  background-color: var(--c-surface);
+  border-color: var(--c-border);
+  color: var(--c-text);
+  transition: var(--transition);
+}
+.input-theme::placeholder { color: var(--c-text3); }
+.input-theme:focus {
+  border-color: var(--c-primary);
+  box-shadow: 0 0 0 3px var(--c-glow-strong);
+}
+
+
