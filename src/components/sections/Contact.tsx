@@ -47,7 +47,7 @@ export default function Contact() {
             Initiate <span className="text-indigo-500 dark:text-violet-400 font-extrabold">Engineering Collaboration</span>
           </h2>
           <p className="max-w-2xl text-theme2 text-sm sm:text-base leading-relaxed">
-            Open to full-time AI/ML engineering positions, quantitative software projects, and production systems architecture.
+            Open to full-time AI engineering positions, quantitative software projects, and production systems architecture.
           </p>
         </motion.div>
 
@@ -73,7 +73,7 @@ export default function Contact() {
                 </span>
               </div>
               <p className="text-theme2 text-xs leading-relaxed font-sans">
-                Seeking high-impact full-time roles in AI Agent architecture, Machine Learning engineering, and Full-Stack systems development.
+                Seeking high-impact full-time roles in AI Agent architecture, Quantitative Analytics, and Full-Stack systems development.
               </p>
             </div>
 

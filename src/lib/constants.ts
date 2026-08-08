@@ -2,7 +2,7 @@ export const SITE_CONFIG = {
   name: "Anshul Deewan",
   title: "Anshul Deewan — AI Engineer & Full Stack Developer",
   description:
-    "Computer Science undergraduate at VIT specializing in AI-assisted full-stack development, machine learning, LLM systems, and quantitative analytics.",
+    "Computer Science undergraduate at VIT specializing in AI-assisted full-stack development, Python, quantitative analytics, and modern web applications.",
   url: "https://anshuldeewan.dev",
   ogImage: "/og.png",
   github: "https://github.com/anshuldeewan",
@@ -23,10 +23,8 @@ export const NAV_LINKS = [
 
 export const ROLES = [
   "AI Engineer",
-  "Machine Learning Engineer",
-  "LLM Applications Developer",
-  "Quantitative Analyst",
   "Full Stack Developer",
+  "Quantitative Analyst",
   "Python Developer",
 ];
 

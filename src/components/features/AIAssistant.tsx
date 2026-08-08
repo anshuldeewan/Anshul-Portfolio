@@ -12,7 +12,7 @@ const KB: Record<string, string> = {
   projects: "Anshul built RidePlus — an AI-powered RO water purifier booking platform (React, Supabase, Vercel). He also built a UPI Transaction Risk Prediction System using Flask + Scikit-learn achieving 92% accuracy on 10K+ transactions.",
   education: "B.Tech CSE at VIT, CGPA 7.87. 12+ Anthropic AI certifications including Claude API, MCP, AI Agents, Bedrock, and Vertex AI.",
   contact: "Email: asharma800077@gmail.com | GitHub: github.com/anshuldeewan | LinkedIn: linkedin.com/in/anshul-deewan",
-  availability: "Anshul is currently open to full-time AI/ML engineering roles and high-impact projects.",
+  availability: "Anshul is currently open to full-time AI Engineering, Full-Stack development, and Quantitative Analytics roles.",
 };
 
 function getReply(q: string): string {
