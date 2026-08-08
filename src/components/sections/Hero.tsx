@@ -53,12 +53,6 @@ export default function Hero() {
 
         {/* Ambient Pulsing Deep Violet Backlight */}
         <div className="absolute top-[35%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[1100px] h-[600px] rounded-full bg-violet-600/15 dark:bg-indigo-500/20 blur-[150px] pointer-events-none" />
-
-        {/* Radial Edge Vignette — Darkens viewport edges for high center-to-edge contrast */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_25%,rgba(6,6,10,0.85)_75%,rgba(4,4,8,0.98)_100%)] pointer-events-none" />
-
-        {/* Seamless Hero -> About Ambient Transition Bridge */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-indigo-500/[0.03] to-transparent pointer-events-none" />
       </div>
 
       {/* Main Hero Grid Layout (60% AI Research Lab + 30% Product Launch + 10% Universe) */}
@@ -105,9 +99,9 @@ export default function Hero() {
                 [01] INFERENCE ARCHITECT & FULL STACK DEVELOPER
               </div>
               <h1 className="text-5xl sm:text-7xl lg:text-[88px] font-extrabold tracking-tight leading-[0.95] cursor-pointer group">
-                <span className="gradient-text transition-all duration-300 group-hover:brightness-125 inline-block">Anshul</span>
+                <span className="image-text-mask inline-block transition-transform duration-500 group-hover:scale-[1.02]">Anshul</span>
                 <br />
-                <span className="text-theme transition-colors duration-300 group-hover:text-indigo-400 inline-block">Deewan</span>
+                <span className="image-text-mask inline-block transition-transform duration-500 group-hover:scale-[1.02]">Deewan</span>
               </h1>
             </motion.div>
 
@@ -119,7 +113,7 @@ export default function Hero() {
               className="flex items-center gap-3 text-lg sm:text-2xl font-bold font-mono text-theme2"
             >
               <span className="text-indigo-500 font-extrabold">›</span>
-              <span className="gradient-text">
+              <span className="text-indigo-500 dark:text-violet-400 font-extrabold">
                 <TypeAnimation
                   sequence={ROLES.flatMap((r) => [r, 2200])}
                   wrapper="span" cursor repeat={Infinity} speed={55}

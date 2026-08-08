@@ -30,7 +30,7 @@ export default function Experience() {
             // SECTION 02: CAREER LOG & ENGINEERING IMPACT LEDGER
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-theme tracking-tight">
-            Production Experience & <span className="gradient-text">Quantitative Tradeoffs</span>
+            Production Experience & <span className="text-indigo-500 dark:text-violet-400 font-extrabold">Quantitative Tradeoffs</span>
           </h2>
           <p className="max-w-2xl text-theme2 text-sm sm:text-base leading-relaxed">
             Hands-on technical roles spanning quantitative trading analytics at Axxela and full-stack AI development at Aletheions.

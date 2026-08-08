@@ -5,6 +5,14 @@ import { Mail, ArrowUp, Activity } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { SITE_CONFIG } from "@/lib/constants";
 
+function BatmanIcon({ className = "w-5 h-5 fill-white" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 100 60" fill="currentColor">
+      <path d="M50 0 C44 14, 32 22, 18 22 C8 22, 0 32, 0 45 C15 45, 26 34, 36 45 C43 45, 47 38, 50 32 C53 38, 57 45, 64 45 C74 34, 85 45, 100 45 C100 32, 92 22, 82 22 C68 22, 56 14, 50 0 Z" />
+    </svg>
+  );
+}
+
 export default function Footer() {
   return (
     <footer className="relative border-t border-theme/60 py-10 section-tinted text-theme overflow-hidden transition-colors duration-300 font-mono">
@@ -13,8 +21,8 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-5">
           
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white font-extrabold text-xs shadow-md">
-              AD
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white shadow-md">
+              <BatmanIcon className="w-4.5 h-4.5 fill-white drop-shadow" />
             </div>
             <div>
               <p className="text-theme text-xs font-bold font-sans">Anshul Deewan</p>

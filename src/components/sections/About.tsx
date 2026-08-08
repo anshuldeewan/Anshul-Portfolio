@@ -77,7 +77,7 @@ export default function About() {
             // SECTION 01: CORE ENGINEERING THESIS & TRACK RECORD
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-theme tracking-tight">
-            Bridging <span className="gradient-text">Statistical Rigor</span> with Production Products
+            Bridging <span className="text-indigo-500 dark:text-violet-400 font-extrabold">Statistical Rigor</span> with Production Products
           </h2>
           <p className="max-w-2xl text-theme2 text-sm sm:text-base leading-relaxed">
             I specialize in designing autonomous AI agents, fine-tuned LLM workflows, quantitative trading analytics, and resilient web infrastructure.
@@ -107,7 +107,7 @@ export default function About() {
                   <div>
                     <div className="flex flex-wrap items-center gap-2">
                       <h3 className="text-lg font-extrabold text-theme font-sans tracking-tight">
-                        <span className="gradient-text">Anshul</span> Deewan
+                        <span className="text-indigo-500 dark:text-violet-400 font-extrabold">Anshul</span> Deewan
                       </h3>
                       <CheckCircle2 size={16} className="text-indigo-400 flex-shrink-0" />
                     </div>

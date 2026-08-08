@@ -8,6 +8,14 @@ import { Command, FileText, Menu, X } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 
+function BatmanIcon({ className = "w-5 h-5 fill-white" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 100 60" fill="currentColor">
+      <path d="M50 0 C44 14, 32 22, 18 22 C8 22, 0 32, 0 45 C15 45, 26 34, 36 45 C43 45, 47 38, 50 32 C53 38, 57 45, 64 45 C74 34, 85 45, 100 45 C100 32, 92 22, 82 22 C68 22, 56 14, 50 0 Z" />
+    </svg>
+  );
+}
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("");
@@ -49,15 +57,15 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-20">
-            {/* Logo */}
+            {/* Logo with Batman Emblem */}
             <motion.a
               href="#"
               onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
               className="flex items-center gap-2.5 group"
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: 1.05 }}
             >
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white font-extrabold text-sm shadow-md shadow-indigo-500/20">
-                A
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white shadow-md shadow-indigo-500/20">
+                <BatmanIcon className="w-4.5 h-4.5 fill-white drop-shadow" />
               </div>
               <span className="font-extrabold text-sm text-theme group-hover:text-indigo-500 transition-colors">
                 Anshul<span className="text-indigo-500">.</span>

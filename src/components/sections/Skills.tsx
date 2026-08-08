@@ -47,7 +47,7 @@ export default function Skills() {
             // SECTION 04: AI CAPABILITY MAP & NEURAL ECOSYSTEM
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-theme tracking-tight">
-            Technical <span className="gradient-text">Capability Vectors</span>
+            Technical <span className="text-indigo-500 dark:text-violet-400 font-extrabold">Capability Vectors</span>
           </h2>
           <p className="max-w-2xl text-theme2 text-sm sm:text-base leading-relaxed">
             An interconnected domain matrix mapping competencies across AI model engineering, quantitative trading analytics, and production web systems.

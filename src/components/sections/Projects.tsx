@@ -29,7 +29,7 @@ export default function Projects() {
             // SECTION 03: FLAGSHIP SYSTEM REVEALS & ARCHITECTURE
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-theme tracking-tight">
-            Production <span className="gradient-text">Product Launches</span> & ML Models
+            Production <span className="text-indigo-500 dark:text-violet-400 font-extrabold">Product Launches</span> & ML Models
           </h2>
           <p className="max-w-2xl text-theme2 text-sm sm:text-base leading-relaxed">
             Full-stack systems engineered at the intersection of AI Agent automation, machine learning inference, and quantitative analytics.

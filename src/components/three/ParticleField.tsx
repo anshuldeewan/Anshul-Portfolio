@@ -237,14 +237,14 @@ export default function ParticleField() {
       animId = requestAnimationFrame(animate);
       const t = clock.getElapsedTime();
 
-      // Responsive mouse lerp
-      targetX += (mouseX - targetX) * 0.08;
-      targetY += (mouseY - targetY) * 0.08;
+      // Balanced mouse lerp (Attraction force reduced by -30%)
+      targetX += (mouseX - targetX) * 0.12;
+      targetY += (mouseY - targetY) * 0.12;
 
-      const mouseWorldX = targetX * 14;
-      const mouseWorldY = -targetY * 14;
+      const mouseWorldX = targetX * 15;
+      const mouseWorldY = -targetY * 15;
 
-      // Gravity Well Orbital Motion + Cursor Repulsion Physics (Layer A)
+      // Gravity Well Orbital Motion + Cursor Attraction Physics (Layer A)
       const arrA = (geoA.attributes.position as THREE.BufferAttribute).array as Float32Array;
       for (let i = 0; i < countA; i++) {
         const i3 = i * 3;
@@ -253,12 +253,12 @@ export default function ParticleField() {
         let px = Math.cos(currentAngle) * pulsedRadius;
         let py = centerY + Math.sin(currentAngle) * (pulsedRadius * 0.6);
 
-        // Dynamic repulsion from cursor
-        const dx = px - mouseWorldX;
-        const dy = py - mouseWorldY;
+        // Dynamic attraction towards cursor (-30% force)
+        const dx = mouseWorldX - px;
+        const dy = mouseWorldY - py;
         const distSq = dx * dx + dy * dy;
-        if (distSq < 25) {
-          const force = (25 - distSq) * 0.035;
+        if (distSq < 38) {
+          const force = (38 - distSq) * 0.0385;
           px += (dx / (Math.sqrt(distSq) + 0.1)) * force;
           py += (dy / (Math.sqrt(distSq) + 0.1)) * force;
         }
@@ -267,10 +267,10 @@ export default function ParticleField() {
         arrA[i3 + 1] = py;
       }
       (geoA.attributes.position as THREE.BufferAttribute).needsUpdate = true;
-      pointsA.rotation.y = targetX * 0.18;
-      pointsA.rotation.x = -targetY * 0.18;
+      pointsA.rotation.y = targetX * 0.25;
+      pointsA.rotation.x = -targetY * 0.25;
 
-      // Layer B: Midground gentle counter-rotation & mouse repulsion
+      // Layer B: Midground gentle counter-rotation & mouse attraction
       const arrB = (geoB.attributes.position as THREE.BufferAttribute).array as Float32Array;
       for (let i = 0; i < countB; i++) {
         const i3 = i * 3;
@@ -278,11 +278,11 @@ export default function ParticleField() {
         let px = Math.cos(currentAngle) * radiiB[i];
         let py = centerY + Math.sin(currentAngle) * (radiiB[i] * 0.55);
 
-        const dx = px - mouseWorldX;
-        const dy = py - mouseWorldY;
+        const dx = mouseWorldX - px;
+        const dy = mouseWorldY - py;
         const distSq = dx * dx + dy * dy;
-        if (distSq < 20) {
-          const force = (20 - distSq) * 0.025;
+        if (distSq < 30) {
+          const force = (30 - distSq) * 0.0294;
           px += (dx / (Math.sqrt(distSq) + 0.1)) * force;
           py += (dy / (Math.sqrt(distSq) + 0.1)) * force;
         }
@@ -291,25 +291,26 @@ export default function ParticleField() {
         arrB[i3 + 1] = py;
       }
       (geoB.attributes.position as THREE.BufferAttribute).needsUpdate = true;
-      pointsB.rotation.y = -targetX * 0.14;
-      pointsB.rotation.x = -targetY * 0.14;
+      pointsB.rotation.y = -targetX * 0.19;
+      pointsB.rotation.x = -targetY * 0.19;
 
       // Layer C: Background subtle rotation
-      pointsC.rotation.y = t * 0.006 + targetX * 0.08;
-      pointsC.rotation.x = Math.sin(t * 0.006) * 0.04 - targetY * 0.08;
+      pointsC.rotation.y = t * 0.006 + targetX * 0.12;
+      pointsC.rotation.x = Math.sin(t * 0.006) * 0.04 - targetY * 0.12;
 
-      // Layer D: About Section upward drifting embers & mouse interaction
+      // Layer D: About Section upward drifting embers & mouse attraction
       const arrD = (geoD.attributes.position as THREE.BufferAttribute).array as Float32Array;
       for (let i = 0; i < countD; i++) {
         const i3 = i * 3;
         let py = initYD[i] + Math.sin(t * 0.5 + i * 0.4) * 0.3 + ((t * 0.18 + i * 0.05) % 18) - 9;
         let px = initXD[i] + Math.cos(t * 0.3 + i * 0.6) * 0.2;
 
-        const dx = px - mouseWorldX;
-        const dy = py - (mouseWorldY - aboutCenterY * 0.8);
+        const targetAboutY = mouseWorldY - aboutCenterY * 0.8;
+        const dx = mouseWorldX - px;
+        const dy = targetAboutY - py;
         const distSq = dx * dx + dy * dy;
-        if (distSq < 20) {
-          const force = (20 - distSq) * 0.03;
+        if (distSq < 30) {
+          const force = (30 - distSq) * 0.0315;
           px += (dx / (Math.sqrt(distSq) + 0.1)) * force;
           py += (dy / (Math.sqrt(distSq) + 0.1)) * force;
         }
@@ -318,8 +319,8 @@ export default function ParticleField() {
         arrD[i3 + 1] = py;
       }
       (geoD.attributes.position as THREE.BufferAttribute).needsUpdate = true;
-      pointsD.rotation.y = t * 0.01 + targetX * 0.12;
-      pointsD.rotation.x = Math.sin(t * 0.008) * 0.04 - targetY * 0.12;
+      pointsD.rotation.y = t * 0.01 + targetX * 0.17;
+      pointsD.rotation.x = Math.sin(t * 0.008) * 0.04 - targetY * 0.17;
 
       // Subtle twinkling
       matA.opacity = 0.82 + Math.sin(t * 1.6) * 0.12;

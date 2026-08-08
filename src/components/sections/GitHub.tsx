@@ -18,9 +18,16 @@ function seed(w: number, d: number): number {
   return Math.floor((n - Math.floor(n)) * 5);
 }
 
+const HEATMAP_CLASSES = [
+  "bg-slate-200 dark:bg-slate-800 border-slate-300 dark:border-slate-700",
+  "bg-indigo-300 dark:bg-indigo-950 border-indigo-400 dark:border-indigo-800",
+  "bg-indigo-400 dark:bg-indigo-800 border-indigo-500 dark:border-indigo-700",
+  "bg-indigo-600 dark:bg-indigo-600 border-indigo-700 dark:border-indigo-500",
+  "bg-violet-600 dark:bg-violet-400 border-violet-700 dark:border-violet-300",
+];
+
 function HeatMap() {
   const WEEKS = 26; const DAYS = 7;
-  const colors = ["var(--c-border2)", "var(--c-glow)", "var(--c-primary-hover)", "var(--c-primary)", "var(--c-accent)"];
 
   return (
     <div className="overflow-x-auto scrollbar-hide py-2">
@@ -35,10 +42,9 @@ function HeatMap() {
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: (w * DAYS + d) * 0.0015 }}
-                  className="w-3 h-3 rounded-sm cursor-pointer border border-theme"
-                  style={{ background: colors[lv] }}
+                  className={`w-3.5 h-3.5 rounded-sm cursor-pointer border ${HEATMAP_CLASSES[lv]}`}
                   whileHover={{ scale: 1.5 }}
-                  title={`${lv * 3} contributions`}
+                  title={`${(lv + 1) * 3} contributions`}
                 />
               );
             })}
@@ -70,7 +76,7 @@ export default function GitHubSection() {
             // SECTION 05: OPEN SOURCE ENGINEERING VELOCITY & COMMITS LEDGER
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-theme tracking-tight font-sans">
-            Continuous <span className="gradient-text">GitHub Output</span> & Repositories
+            Continuous <span className="text-indigo-500 dark:text-violet-400 font-extrabold">GitHub Output</span> & Repositories
           </h2>
           <p className="max-w-2xl text-theme2 text-sm sm:text-base leading-relaxed font-sans">
             Live commit velocity, open-source building, and repository maintenance.
@@ -117,8 +123,8 @@ export default function GitHubSection() {
             </span>
             <div className="flex items-center gap-1.5 text-[10px] text-theme3 font-medium">
               <span>Less</span>
-              {["var(--c-border2)", "var(--c-glow)", "var(--c-primary-hover)", "var(--c-primary)", "var(--c-accent)"].map((c, idx) => (
-                <div key={idx} className="w-3 h-3 rounded-sm border border-theme" style={{ background: c }} />
+              {HEATMAP_CLASSES.map((cls, idx) => (
+                <div key={idx} className={`w-3.5 h-3.5 rounded-sm border ${cls}`} />
               ))}
               <span>More</span>
             </div>

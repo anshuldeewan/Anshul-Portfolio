@@ -44,7 +44,7 @@ export default function Contact() {
             // SECTION 06: SYSTEM INQUIRIES & DIRECT COLLABORATION
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-theme tracking-tight">
-            Initiate <span className="gradient-text">Engineering Collaboration</span>
+            Initiate <span className="text-indigo-500 dark:text-violet-400 font-extrabold">Engineering Collaboration</span>
           </h2>
           <p className="max-w-2xl text-theme2 text-sm sm:text-base leading-relaxed">
             Open to full-time AI/ML engineering positions, quantitative software projects, and production systems architecture.
