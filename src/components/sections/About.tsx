@@ -101,17 +101,44 @@ export default function About() {
                 className="glass-card rounded-2xl p-6 sm:p-7 card-shadow border border-theme hover:border-indigo-400/50 space-y-5"
               >
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-indigo-500 via-violet-600 to-sky-500 flex items-center justify-center text-xl font-extrabold text-white shadow-lg flex-shrink-0">
-                    AD
-                  </div>
+                  <motion.div
+                    whileHover={{ scale: 1.08, rotate: 3 }}
+                    className="relative w-14 h-14 rounded-xl bg-gradient-to-br from-indigo-500 via-violet-600 to-sky-500 flex items-center justify-center text-xl font-extrabold text-white shadow-lg flex-shrink-0 cursor-pointer group"
+                  >
+                    <div className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-sky-500 opacity-50 blur group-hover:opacity-100 transition duration-300" />
+                    <span className="relative z-10">AD</span>
+                  </motion.div>
+                  
                   <div>
                     <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="text-lg font-extrabold text-theme font-sans tracking-tight">
-                        <span className="text-indigo-500 dark:text-violet-400 font-extrabold">Anshul</span> Deewan
-                      </h3>
-                      <CheckCircle2 size={16} className="text-indigo-400 flex-shrink-0" />
+                      <motion.div
+                        whileHover={{ scale: 1.03 }}
+                        className="relative group/name cursor-default"
+                      >
+                        {/* Ambient glow behind name on hover */}
+                        <div className="absolute -inset-2 rounded-lg bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-sky-500/20 opacity-0 group-hover/name:opacity-100 blur-md transition duration-300 pointer-events-none" />
+                        
+                        <h3 className="relative text-xl sm:text-2xl font-black tracking-tight flex items-center gap-1.5">
+                          <span className="name-gradient-animated font-black">
+                            Anshul Deewan
+                          </span>
+                          <motion.span
+                            animate={{ rotate: [0, 15, -15, 0] }}
+                            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                            className="inline-block"
+                          >
+                            <Sparkles size={16} className="text-amber-400 fill-amber-400/20" />
+                          </motion.span>
+                        </h3>
+                      </motion.div>
+                      
+                      <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-[11px] font-mono font-semibold">
+                        <CheckCircle2 size={12} className="text-indigo-400 flex-shrink-0" />
+                        <span>Verified</span>
+                      </div>
                     </div>
-                    <p className="text-indigo-400 text-xs font-mono font-semibold mt-0.5">AI Systems Architect & Full Stack Developer</p>
+                    
+                    <p className="text-indigo-400 text-xs font-mono font-semibold mt-1">AI Systems Architect & Full Stack Developer</p>
                     <div className="flex items-center gap-1.5 mt-1.5 text-theme3 text-xs font-mono">
                       <MapPin size={12} className="text-rose-500" />
                       <span>Jaipur, Rajasthan, India</span>
